@@ -443,7 +443,7 @@ export default {
               // any excluded element yet
               if (!clickedOnExcludedEl) {
                 // Get the element using the reference name
-                const excludedEl = vnode.context.$refs[refName]
+                const excludedEl = binding.instance.$refs[refName]
                 // See if this excluded element
                 // is the same element the user just clicked on
                 clickedOnExcludedEl = excludedEl
@@ -455,14 +455,14 @@ export default {
 
           // We check to see if the clicked element is not
           // the dialog element and not excluded
-          if (clickedOnExcludedEl && vnode.context.autoClose) {
-            vnode.context[handler]()
+          if (clickedOnExcludedEl && binding.instance.autoClose) {
+            binding.instance[handler]()
           }
           if (!el.contains(e.target) && !clickedOnExcludedEl) {
             // If the clicked element is outside the dialog
             // and not the button, then call the outside-click handler
             // from the same component this directive is used in
-            vnode.context[handler]()
+            binding.instance[handler]()
           }
         }
         // Register click/touchstart event listeners on the whole page
